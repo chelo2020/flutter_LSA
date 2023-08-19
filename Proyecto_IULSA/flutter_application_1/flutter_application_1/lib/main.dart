@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home.dart';
+import 'package:flutter_application_1/menu.dart';
 
 void main() {
   runApp(VisitorApp());
@@ -13,7 +13,10 @@ class Visitor {
 }
 
 class VisitorApp extends StatelessWidget {
+  static const name = 'main';
   final List<Visitor> visitorList = [];
+
+  VisitorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,33 +29,54 @@ class VisitorApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Proyecto IULSA'),
-      ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text('IULSA'),
-            IconButton(
-              icon: const Icon(Icons.home),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MainMenu(
-                            visitorList: const [],
-                          )),
-                );
-              },
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/LSA.jpg'),
+                fit: BoxFit.cover,
+              ),
             ),
-          ],
-        ),
+          ),
+          Container(
+            color: Colors.black.withOpacity(0.3),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'IULSA',
+                    style: TextStyle(fontSize: 24, color: Colors.white),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MainMenu(
+                            visitorList: [],
+                            errorMessage: 'Mal ubicado',
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Ingresar',
+                      style: TextStyle(color: Color.fromARGB(255, 226, 59, 59)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

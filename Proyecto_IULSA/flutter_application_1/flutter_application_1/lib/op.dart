@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ObjetivosPage extends StatelessWidget {
+  static const name = 'op';
   const ObjetivosPage({super.key});
 
   @override

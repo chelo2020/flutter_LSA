@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class QuienesSomosPage extends StatelessWidget {
+  static const name = 'qsp';
   const QuienesSomosPage({super.key});
 
   @override
